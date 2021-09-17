@@ -11,8 +11,7 @@ use Cart;
 class MainController extends Controller
 
 {
-    
-     
+
     public function index(){
               //SELECT * FROM PRODUIT
               $match = ['is_online'=>1,'parent_id'=>null];
@@ -22,18 +21,25 @@ class MainController extends Controller
         if(auth()->check()){
             $userID = auth()->user()->id;
             $contents = Cart::session($userID)->getContent();
-        
-               return view('shop.index')-> with([
-                   'Produits' => $Produits,
-                   'Categorys'=> $Categorys,
-                   'contents'=> $contents
-               ]);
-        }
+            $role = auth()->user()->role;
+            //role check if admin or user
+                if($role == 1){
+                    //admin view
+                    return view('admin.index');
+                }else{
+                    //user view
+                    return view('shop.index')-> with([
+                        'Produits' => $Produits,
+                        'Categorys'=> $Categorys,
+                        'contents'=> $contents
+                    ]);
+                }
+          }
        else{
             return view('shop.index')-> with([
                 'Produits' => $Produits,
                 'Categorys'=> $Categorys,
-               
+
             ]);
          }
     }
@@ -63,13 +69,13 @@ class MainController extends Controller
     }
 
     public function category(Request $request){
-        
+
         $match = ['is_online'=>1,'parent_id'=>null];
-      
-        
+
+
         $Categorys = Category::where($match)->get();
         $Category = Category::find($request->id);
-        
+
         $produits = Produit::where('category_id',$request->id)->paginate(12);
 
         if(auth()->check()){
@@ -77,18 +83,18 @@ class MainController extends Controller
             $contents = Cart::session($userID)->getContent();
 
             return view('shop.category')->with([
-                'Categorys' => $Categorys, 
+                'Categorys' => $Categorys,
                 'produits' => $produits,
                 'Category'=> $Category,
                 'contents'=> $contents,
-            
+
             ]);
         }else{
 
             return view('shop.category')->with([
-                'Categorys' => $Categorys, 
+                'Categorys' => $Categorys,
                 'produits' => $produits,
-                'Category'=> $Category, 
+                'Category'=> $Category,
             ]);
         }
     }
@@ -107,7 +113,7 @@ class MainController extends Controller
             return view('shop.category')->with([
                 'produits' => $produits,
                 'Category'=> $Category,
-                'Categorys' => $Categorys, 
+                'Categorys' => $Categorys,
                 'tag'=> $tag,
                 'contents'=> $contents
             ]);
@@ -116,12 +122,12 @@ class MainController extends Controller
             return view('shop.category')->with([
                 'produits' => $produits,
                 'Category'=> $Category,
-                'Categorys' => $Categorys, 
+                'Categorys' => $Categorys,
                 'tag'=> $tag,
-                
+
             ]);
         }
     }
 
-  
+
 }
