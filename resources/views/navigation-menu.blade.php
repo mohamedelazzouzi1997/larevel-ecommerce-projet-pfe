@@ -77,9 +77,9 @@
 
                         <x-slot name="content">
                             <!-- Account Management -->
-                            <h6 class="dropdown-header small text-muted">
-                                {{ __('Manage Account') }}
-                            </h6>
+                            <x-jet-dropdown-link href="{{ route('index') }}">
+                                {{ __('Dashboard') }}
+                            </x-jet-dropdown-link>
 
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('Profile') }}

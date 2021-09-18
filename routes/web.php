@@ -37,10 +37,14 @@ Route::get('/cancel-payment','PaypalPaymentController@paypalCancel')->name('canc
 Route::get('/success-payment','PaypalPaymentController@paypalSuccess')->name('success.payment');
 
 //admin route
-Route::get('/admin','adminController@index')->name('admin.index');
-Route::get('/admin/login','adminController@showAdminLoginForm')->name('admin.login');
-Route::post('/admin/login','adminController@adminLogin')->name('admin.login');
-Route::post('/admin/logout','adminController@adminLogout')->name('admin.logout');
+// Route::get('/admin','adminController@index')->name('admin.index');
+// Route::get('/admin/login','adminController@showAdminLoginForm')->name('admin.login');
+// Route::post('/admin/login','adminController@adminLogin')->name('admin.login');
+// Route::post('/admin/logout','adminController@adminLogout')->name('admin.logout');
+
+//admin view
+Route::get('/admin/show/products','adminController@showProducts')->name('product.admin');
+Route::get('/admin/show/orders','adminController@showOrders')->name('orders.admin');
 
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Produit;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\tag;
 use WithPagination;
 use Illuminate\Http\Request;
@@ -25,7 +26,12 @@ class MainController extends Controller
             //role check if admin or user
                 if($role == 1){
                     //admin view
-                    return view('admin.index');
+                    $produit = Produit::all();
+                    $orders = Order::all();
+                    return view('admin.index')->with([
+                        'produit'=>$produit,
+                        'orders'=>$orders
+                    ]);
                 }else{
                     //user view
                     return view('shop.index')-> with([
