@@ -46,8 +46,9 @@ Route::get('/success-payment','PaypalPaymentController@paypalSuccess')->name('su
 Route::get('/admin/show/products','adminController@showProducts')->name('product.admin');
 Route::get('/admin/show/orders','adminController@showOrders')->name('orders.admin');
 
-
-
+// Route::resource('Order', 'OrderController');
+Route::put('/order','OrderController@update')->name('Order.update');
+Route::delete('/order/{id}','OrderController@destroy')->name('Order.destroy');
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return redirect('/');
 })->name('dashboard');

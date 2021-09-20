@@ -4,6 +4,7 @@
 @endsection
 @section('content')
 <div class="container">
+    @include('layout.alerts')
     <div class="row justify-content-center">
         <div class="col-md-2">
 
@@ -20,6 +21,7 @@
                     <th>qty</th>
                     <th>price</th>
                     <th>Total</th>
+                    <th>Livred</th>
                 </thead>
                 <tbody>
                     @foreach ($orders as $order)
@@ -38,6 +40,33 @@
                             <td>{{ $order->qty }}</td>
                             <td>{{ $order->price }}</td>
                             <td>{{ $order->total }}</td>
+                            <td> @if($order->livred == 1)
+                                    <i class="fas fa-check text-success"></i>
+                                @else
+                                    <i class="fas fa-times text-danger"></i>
+                                @endif
+                            </td>
+                            <td class="d-flex flex-row justify-content-center align-items-center">
+                                <form action="{{ route('Order.update') }}" method="post">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="hidden" name="id" value="{{ $order->id }}">
+                                    <button type="submit" style="margin-right: 5px" class="btn btn-warning btn-sm  ">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                </form>
+                                <form id="{{ $order->id }}" action="{{ route('Order.destroy',$order->id) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                     <input type="hidden" name="id" value="{{ $order->id }}">
+                                    <button type="submit"
+                                        onclick="event.preventDefault();
+                                            if(confirm('Confirm Delete Order {{ $order->id }}'))
+                                            document.getElementById({{ $order->id }}).submit();
+                                        "
+                                    class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
