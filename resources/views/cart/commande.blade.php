@@ -1,5 +1,7 @@
 @extends('shop')
-
+@section('title')
+    <title>CheckOut</title>
+@endsection
 @section('content')
 <div class="container">
     <div class="py-5 text-center">
@@ -20,10 +22,10 @@
         </h4>
         <ul class="list-group mb-3">
             @foreach ($contents as $produit)
-            
+
             <li class="list-group-item d-flex justify-content-between lh-condensed">
               <a href="{{ route('show_produit',["id" =>$produit->id]) }}"><img width="110" class="rounded-circle img-thumbnail" src="{{ asset('img\/'.$produit->attributes->img) }}" alt=""></a>
-                 
+
                 <div>
                   <h6 class="my-0" style="font-size: 140%; font-weight:bolder">{{$produit->name }}</h6>
                   <small class="text-black "><span style="font-size: 120%; font-weight:bolder">Size :</span> {{strToUpper($produit->attributes->size)}}</small> <div class="space"></div>
@@ -31,13 +33,13 @@
                   <small class="text-black"><span style="font-size: 120%; font-weight:bolder">Quantity :</span> {{strToUpper($produit->quantity)}}</small>
                   {{-- <span><a style="height: 30px; margin-left:37px" class="btn btn-primary btn-sm" href="#" role="button">Edit</a></span> --}}
                 </div>
-                
+
                 <span class="text-muted"> {{number_format($produit->attributes->prix_ttc * $produit->quantity,2)}}</span>
-                
+
               </li>
-              
+
             @endforeach
-          
+
 
           <li class="list-group-item d-flex justify-content-between">
             <span style="font-size: 120%; font-weight:bolder">Total (Euro)</span>
@@ -148,7 +150,7 @@
 
                 </form>
             </div>
-        
+
         </div>
 
 </main>

@@ -1,15 +1,17 @@
 
 @extends('shop')
-
+@section('title')
+    <title>Cart</title>
+@endsection
 @section('content')
 
-    
+
 @if (auth()->check())
 
 <main role="main">
-    
+
     <section class="py-5">
-       
+
         <div class="container">
             @include('layout.alerts')
                 <h1 class="jumbotron-heading"> <span class="badge badge-primary ">Votre panier </span></h1>
@@ -27,8 +29,8 @@
                 </thead>
                 <tbody>
                     @foreach ($contents as $produit)
-                        
-                   
+
+
                 <tr>
                     <td style="font-size: 150%">
                         <a href="{{ route('show_produit',["id" =>$produit->id]) }}"><img width="110" class="rounded-circle img-thumbnail" src="{{ asset('img\/'.$produit->attributes->img) }}" alt=""></a>
@@ -88,9 +90,9 @@
                     Order Now
                 </a>
             </div>
-            
+
             @endif
-            
+
         </div>
     </section>
 </main>

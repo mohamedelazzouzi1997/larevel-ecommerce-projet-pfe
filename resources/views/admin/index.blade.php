@@ -6,7 +6,7 @@
 
 
 
-    @yield('title')
+    <title>@yield('title')</title>
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -41,7 +41,7 @@
             <a href="{{ route('orders.admin') }}" style="text-decoration: none">
                 <div class="card bg-success text-white">
                     <div class="card-body d-flex  justify-content-center" >
-                        <h3>Orders {{ $orders->count() }}</h3>
+                        <h3>Orders {{ $c_order->count() }}</h3>
                     </div>
                 </div>
             </a>

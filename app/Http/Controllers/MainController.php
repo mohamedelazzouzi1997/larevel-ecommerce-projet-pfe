@@ -27,10 +27,10 @@ class MainController extends Controller
                 if($role == 1){
                     //admin view
                     $produit = Produit::all();
-                    $orders = Order::all();
+                    $c_order = Order::all();
                     return view('admin.index')->with([
                         'produit'=>$produit,
-                        'orders'=>$orders
+                        'c_order'=>$c_order
                     ]);
                 }else{
                     //user view

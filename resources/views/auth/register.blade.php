@@ -1,3 +1,6 @@
+
+<title>Register</title>
+
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">

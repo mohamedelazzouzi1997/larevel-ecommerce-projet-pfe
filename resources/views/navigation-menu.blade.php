@@ -11,7 +11,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
-                <x-jet-nav-link class="text-white"  href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                <x-jet-nav-link class="text-white"  href="{{ url('/') }}" :active="request()->routeIs('dashboard')">
                     {{ __('Home') }}
                 </x-jet-nav-link>
             </ul>
