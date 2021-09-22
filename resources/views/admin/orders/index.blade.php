@@ -6,11 +6,9 @@
 <div class="container">
     @include('layout.alerts')
     <div class="row justify-content-center">
-        <div class="col-md-2">
 
-        </div>
-        <div class="col-md-10">
-            <table class="table table-dark table-hover table-bordered ">
+        <div class="col-md-12">
+            <table class="table table-light table-hover table-bordered ">
                 <thead>
                     <th>Order id</th>
                     <th>User Name</th>
@@ -51,8 +49,8 @@
                                     @csrf
                                     @method('PUT')
                                     <input type="hidden" name="id" value="{{ $order->id }}">
-                                    <button type="submit" style="margin-right: 5px" class="btn btn-warning btn-sm  ">
-                                        <i class="fas fa-edit"></i>
+                                    <button type="submit" style="margin-right: 5px" class="btn btn-success btn-sm  ">
+                                        <i class="fas fa-check"></i>
                                     </button>
                                 </form>
                                 <form id="{{ $order->id }}" action="{{ route('Order.destroy',$order->id) }}" method="post">

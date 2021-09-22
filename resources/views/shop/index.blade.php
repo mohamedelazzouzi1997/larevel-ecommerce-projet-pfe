@@ -5,8 +5,8 @@
 @section('content')
 <section class="py-5 text-center">
   <div class="container">
-      <h1 class="jumbotron-heading">Commandez votre <br><span class="badge badge-light">nouveau</span> <br>T-Shirt <span class="badge badge-primary ">préféré </span>!</h1>
-      <p class="lead text-muted">Dénichez THE T-Shirt de votre série, films préféré(e).</p>
+      <h1 class="jumbotron-heading">Order Your <br><span class="badge badge-light">New</span> <br>T-Shirt <span class="badge badge-primary ">prefer !</span></h1>
+      <p class="lead text-muted font-weight-bolder">Chose THE T-Shirt of your favorite category</p>
 
   </div>
 </section>
@@ -28,12 +28,12 @@
               </div>
               </div>
             </div>
-          
-          
-          
+
+
+
           </div>
         @endforeach
-      
+
       </div>
     </div>
   </div>

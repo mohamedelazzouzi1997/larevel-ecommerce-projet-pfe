@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Produit extends Model
 {
-    private static $facteur_tva = 1.2; 
+     protected $fillable = ['nom', 'prix_ht','description','img','category_id'];
+    private static $facteur_tva = 1.2;
     use HasFactory;
     public function category(){
-       
+
         return $this->belongsTo(Category::class);
     }
 

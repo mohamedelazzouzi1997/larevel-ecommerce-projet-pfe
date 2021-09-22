@@ -49,6 +49,12 @@ Route::get('/admin/show/orders','adminController@showOrders')->name('orders.admi
 // Route::resource('Order', 'OrderController');
 Route::put('/order','OrderController@update')->name('Order.update');
 Route::delete('/order/{id}','OrderController@destroy')->name('Order.destroy');
+
+Route::get('/product/edit/{id}','ProductController@edit')->name('Product.edit');
+Route::POST('/product/edit/{id}','ProductController@update')->name('Product.update');
+Route::delete('/product/{id}','ProductController@destroy')->name('Product.destroy');
+Route::get('/product/create','ProductController@create')->name('Product.create');
+Route::POST('/product/store','ProductController@store')->name('Product.store');
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return redirect('/');
 })->name('dashboard');

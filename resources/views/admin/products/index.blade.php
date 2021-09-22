@@ -3,13 +3,14 @@
     Admin Product
 @endsection
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-2">
 
-        </div>
-        <div class="col-md-10">
-            <table class="table table-dark table-hover table-bordered ">
+<div class="container">
+@include('layout.alerts')
+
+    <div class=" d-flex row justify-content-center">
+
+        <div class="col-md-12">
+            <table class="table table-light table-hover table-bordered  ">
                 <thead>
                     <th>id</th>
                     <th>img</th>
@@ -27,13 +28,34 @@
                             <td>{{ $produit->description }}</td>
                             <td>{{ $produit->prix_ht }}</td>
                             <td>{{ $produit->category->nom }}</td>
+                            <td class="d-flex flex-row justify-content-center align-items-center">
+                                <form action="{{ route('Product.edit',$produit->id) }}" method="GET">
+                                    @csrf
+                                    @method('GET')
+                                    <input type="hidden" name="id" value="{{ $produit->id }}">
+                                    <button type="submit" style="margin-right: 5px" class="btn btn-warning btn-sm  ">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                </form>
+                                <form id="{{ $produit->id }}" action="{{ route('Product.destroy',$produit->id) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                     <input type="hidden" name="id" value="{{ $produit->id }}">
+                                    <button type="submit"
+                                        onclick="event.preventDefault();
+                                            if(confirm('Confirm Delete Product {{ $produit->id }}'))
+                                            document.getElementById({{ $produit->id }}).submit();
+                                        "
+                                    class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         <hr>
                  <div class=" d-flex justify-content-center">
-                    {{ $orders->links() }}
+                    {{ $produits->links() }}
                 </div>
         </div>
     </div>

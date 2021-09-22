@@ -16,7 +16,7 @@ class MainController extends Controller
     public function index(){
               //SELECT * FROM PRODUIT
               $match = ['is_online'=>1,'parent_id'=>null];
-              $Produits = Produit::with('category')->paginate(12);
+              $Produits = Produit::with('category')->latest()->paginate(12);
               $Categorys = Category::where($match)->get();
 
         if(auth()->check()){
@@ -26,10 +26,10 @@ class MainController extends Controller
             //role check if admin or user
                 if($role == 1){
                     //admin view
-                    $produit = Produit::all();
+                    $produits = Produit::paginate(5);
                     $c_order = Order::all();
-                    return view('admin.index')->with([
-                        'produit'=>$produit,
+                    return view('admin.products.index')->with([
+                        'produits'=>$produits,
                         'c_order'=>$c_order
                     ]);
                 }else{
